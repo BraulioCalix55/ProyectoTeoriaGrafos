@@ -14,23 +14,25 @@ public class Nodo {
     int nombre=0, Vx=0,Vy=0;
     ArrayList <Nodo> conexiones= new ArrayList<Nodo>();
     boolean visitado=false;
-    ArrayList pesos= new ArrayList();
+    int grado;
     public Nodo(int Nombre,int valorx,int valory) {
         this.nombre=Nombre;
         this.Vx=valorx;
         this.Vy=valory;
+        grado=0;
     }
 
     public Nodo() {
     }
 
-    public ArrayList getPesos() {
-        return pesos;
+    public int getGrado() {
+        return grado;
     }
 
-    public void setPesos(ArrayList pesos) {
-        this.pesos = pesos;
+    public void setGrado(int grado) {
+        this.grado = grado;
     }
+
 
     public int getNombre() {
         return nombre;
@@ -71,6 +73,13 @@ public class Nodo {
     public void setVisitado(boolean visitado) {
         this.visitado = visitado;
     }
+
+    @Override
+    public String toString() {
+        return "Nodo{" + "nombre=" + nombre + ", Vx=" + Vx + ", Vy=" + Vy + ", conexiones=" + conexiones + ", visitado=" + visitado + ", grado=" + grado + '}';
+    }
+
+    
 
     
     

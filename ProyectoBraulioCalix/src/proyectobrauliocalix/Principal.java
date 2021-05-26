@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Braulio
  */
 public class Principal extends javax.swing.JFrame {
-
+    Pintar pintar =new Pintar();
     /**
      * Creates new form Principal
      */
@@ -44,7 +44,7 @@ public class Principal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        PanelMapa = new javax.swing.JPanel();
         AgArista = new javax.swing.JButton();
         PruebaRuta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -153,25 +153,25 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        PanelMapa.setBackground(new java.awt.Color(153, 153, 153));
+        PanelMapa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                PanelMapaMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PanelMapaLayout = new javax.swing.GroupLayout(PanelMapa);
+        PanelMapa.setLayout(PanelMapaLayout);
+        PanelMapaLayout.setHorizontalGroup(
+            PanelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 670, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PanelMapaLayout.setVerticalGroup(
+            PanelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 370, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 370));
+        getContentPane().add(PanelMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 370));
 
         AgArista.setText("Agregar Arista");
         AgArista.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,37 +219,60 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AgAristaMouseClicked
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        Cnodos++;
-        System.out.println("posicion de x : " + evt.getX());
-        System.out.println("posicion de y: " + evt.getY());
-        System.out.println("Cantidad de nodos: "+Cnodos);
-    }//GEN-LAST:event_jPanel1MouseClicked
+    private void PanelMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMapaMouseClicked
+
+        if (Cnodos < 16) {
+            Nodo n = new Nodo(Cnodos, evt.getX(), evt.getY());
+            grafo.add(n);
+            Pintar.pintarCirculo(PanelMapa.getGraphics(), evt.getX(),evt.getY(),String.valueOf(Cnodos));
+            Cnodos++;
+        } else {
+            JOptionPane.showMessageDialog(this, "no se pueden agregar mas de 15 nodos");
+        }
+    }//GEN-LAST:event_PanelMapaMouseClicked
 
     private void Agregar_AristaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_AristaMouseClicked
-        int N1 = 0, N2 = 0, peso = 0;
+        int N1 = 0, N2 = 0;
         try {
             N1 = Integer.parseInt(Norigen.getText());
             N2 = Integer.parseInt(Ndestino.getText());
-            peso = Integer.parseInt(Apeso.getText());
+            
 
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "tiene que ingresar numeros");
         }
-        if (N1 < 0 || N1 > 15 || N2 < 0 || N2 > 15 || peso < 0 || N1 == N2) {
+        if (N1 < 0 || N1 > 15 || N2 < 0 || N2 > 15 || N1 == N2) {
             JOptionPane.showMessageDialog(this, "ha ingresado mal un valor solo se permite un maximo de 15 nodos");
         } else {
             System.out.println("simon si vale");
         }
+        Madyacencia[N1][N2]=1;
+        
+        Madyacencia[N2][N1]=1;
+        
+        int x1=grafo.get(N1).getVx();
+        int y1=grafo.get(N1).getVy();
+        int x2=grafo.get(N2).getVx();
+        int y2=grafo.get(N2).getVy();
+        grafo.get(N1).setGrado(grafo.get(N1).getGrado()+1);
+        grafo.get(N2).setGrado(grafo.get(N2).getGrado()+1);
+        Pintar.pintarLinea(PanelMapa.getGraphics(),x1,y1,x2, y2);
     }//GEN-LAST:event_Agregar_AristaMouseClicked
 
     private void PruebaRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PruebaRutaMouseClicked
         // TODO add your handling code here:
+        imprimeMatriz(Madyacencia);
+        System.out.println("\n\n");
+        for (int i = 0; i < grafo.size(); i++) {
+            System.out.println("grado: "+grafo.get(i).getGrado());
+        }
         if (Cnodos >= 2) {
+            System.out.println(grafo.toString());
             Prueba_ruta.pack();
             Prueba_ruta.setModal(true);
             Prueba_ruta.setLocationRelativeTo(this);
             Prueba_ruta.setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(this, "se necesitan al menos dos nodos creados para probar una ruta \ngracias");
         }
@@ -291,6 +314,14 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
+    private void imprimeMatriz(int m[][]) {
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                System.out.print("[" + m[i][j] + "]");
+            }
+            System.out.println("");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgArista;
     private javax.swing.JDialog Agg_Arista;
@@ -299,6 +330,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea Instrucciones;
     private javax.swing.JTextField Ndestino;
     private javax.swing.JTextField Norigen;
+    private javax.swing.JPanel PanelMapa;
     private javax.swing.JButton PruebaRuta;
     private javax.swing.JDialog Prueba_ruta;
     private javax.swing.JButton jButton1;
@@ -309,7 +341,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -318,12 +349,19 @@ public class Principal extends javax.swing.JFrame {
     SOLICITAR INTERFAZ GRAFICA PARA V TRUE
     SOLICITAR INTERFAZ GRAFICA PARA E TRUE
     REPRESENTAR EN UNA ESTRUCTURA DE DATO TRUE(ARRAYLIST)
-    DIBUJAR EL GRAFO G FALSE
+    DIBUJAR EL GRAFO G TRUE
     CALCULAR EL GRADO DEL GRAFO FALSE
-    CALCULAR LA SUMA DED LOS GRADOS DE LOS VERTICES V FALSE
-    CALCULAR EL GRADO MENOR ENTRE LOS VERTICES FALSE
-     */
-    ArrayList grafo = new ArrayList();
+    CALCULAR LA SUMA DED LOS GRADOS DE LOS VERTICES V FALSE teniendo el grado de cada nodo, 
+                                                            un for con acumulador y se hace
+    CALCULAR EL GRADO MENOR ENTRE LOS VERTICES FALSE ya se puso grado en el nodo, despues va 
+                                                            a ser buscar el menor
+    SOLICITAR RUTA Y VALIDARLA
+    CAMBIARLE COLOR A LA RUTA
+    DETECTAR CICLOS EN G
+    
+    */
+    ArrayList<Nodo> grafo = new ArrayList();
     int[][] Madyacencia = new int[15][15];// se pone un maximo de 15 por pura conveniencia
+    
     int Cnodos = 0; //cantidad de nodos
 }
