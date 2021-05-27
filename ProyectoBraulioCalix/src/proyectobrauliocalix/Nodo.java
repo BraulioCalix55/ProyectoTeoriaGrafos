@@ -33,7 +33,7 @@ public class Nodo {
         this.grado = grado;
     }
 
-
+    
     public int getNombre() {
         return nombre;
     }

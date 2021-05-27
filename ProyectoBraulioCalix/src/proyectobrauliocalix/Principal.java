@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
  * @author Braulio
  */
 public class Principal extends javax.swing.JFrame {
-    Pintar pintar =new Pintar();
+
+    Pintar pintar = new Pintar();
+
     /**
      * Creates new form Principal
      */
@@ -33,9 +35,7 @@ public class Principal extends javax.swing.JFrame {
         Agg_Arista = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         Norigen = new javax.swing.JTextField();
-        Apeso = new javax.swing.JTextField();
         Ndestino = new javax.swing.JTextField();
         Agregar_Arista = new javax.swing.JButton();
         Prueba_ruta = new javax.swing.JDialog();
@@ -44,6 +44,8 @@ public class Principal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        LabelGrado = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         PanelMapa = new javax.swing.JPanel();
         AgArista = new javax.swing.JButton();
         PruebaRuta = new javax.swing.JButton();
@@ -55,8 +57,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setText("Nodo Origen");
 
         jLabel4.setText("Nodo Destino");
-
-        jLabel5.setText("Tamaño/peso");
 
         Agregar_Arista.setText("Agregar Arista");
         Agregar_Arista.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,13 +73,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(71, 71, 71)
                 .addGroup(Agg_AristaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(Agg_AristaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Norigen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Ndestino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Apeso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Ndestino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98))
             .addGroup(Agg_AristaLayout.createSequentialGroup()
                 .addGap(133, 133, 133)
@@ -97,11 +95,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(Agg_AristaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(Ndestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(Agg_AristaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(Apeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
                 .addComponent(Agregar_Arista)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -152,6 +146,22 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(LabelGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, 670, 40));
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 670, 50));
 
         PanelMapa.setBackground(new java.awt.Color(153, 153, 153));
         PanelMapa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,10 +178,10 @@ public class Principal extends javax.swing.JFrame {
         );
         PanelMapaLayout.setVerticalGroup(
             PanelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGap(0, 330, Short.MAX_VALUE)
         );
 
-        getContentPane().add(PanelMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 370));
+        getContentPane().add(PanelMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 330));
 
         AgArista.setText("Agregar Arista");
         AgArista.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,7 +189,7 @@ public class Principal extends javax.swing.JFrame {
                 AgAristaMouseClicked(evt);
             }
         });
-        getContentPane().add(AgArista, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, -1, -1));
+        getContentPane().add(AgArista, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 520, -1, -1));
 
         PruebaRuta.setText("Probar Ruta");
         PruebaRuta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,7 +197,7 @@ public class Principal extends javax.swing.JFrame {
                 PruebaRutaMouseClicked(evt);
             }
         });
-        getContentPane().add(PruebaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 480, -1, -1));
+        getContentPane().add(PruebaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 520, -1, -1));
 
         Instrucciones.setEditable(false);
         Instrucciones.setColumns(20);
@@ -198,7 +208,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 430, 120));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Webp.net-resizeimage.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 220, 250, 200));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 250, 200));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/562290-naruto-asi-son-aldeas-ocultas.jpg"))); // NOI18N
@@ -224,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
         if (Cnodos < 16) {
             Nodo n = new Nodo(Cnodos, evt.getX(), evt.getY());
             grafo.add(n);
-            Pintar.pintarCirculo(PanelMapa.getGraphics(), evt.getX(),evt.getY(),String.valueOf(Cnodos));
+            Pintar.pintarCirculo(PanelMapa.getGraphics(), evt.getX(), evt.getY(), String.valueOf(Cnodos));
             Cnodos++;
         } else {
             JOptionPane.showMessageDialog(this, "no se pueden agregar mas de 15 nodos");
@@ -236,7 +246,6 @@ public class Principal extends javax.swing.JFrame {
         try {
             N1 = Integer.parseInt(Norigen.getText());
             N2 = Integer.parseInt(Ndestino.getText());
-            
 
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "tiene que ingresar numeros");
@@ -246,17 +255,22 @@ public class Principal extends javax.swing.JFrame {
         } else {
             System.out.println("simon si vale");
         }
-        Madyacencia[N1][N2]=1;
-        
-        Madyacencia[N2][N1]=1;
-        
-        int x1=grafo.get(N1).getVx();
-        int y1=grafo.get(N1).getVy();
-        int x2=grafo.get(N2).getVx();
-        int y2=grafo.get(N2).getVy();
-        grafo.get(N1).setGrado(grafo.get(N1).getGrado()+1);
-        grafo.get(N2).setGrado(grafo.get(N2).getGrado()+1);
-        Pintar.pintarLinea(PanelMapa.getGraphics(),x1,y1,x2, y2);
+        Madyacencia[N1][N2] = 1;
+        Madyacencia[N2][N1] = 1;
+        int x1 = grafo.get(N1).getVx();
+        int y1 = grafo.get(N1).getVy();
+        int x2 = grafo.get(N2).getVx();
+        int y2 = grafo.get(N2).getVy();
+        grafo.get(N1).setGrado(grafo.get(N1).getGrado() + 1);
+        grafo.get(N2).setGrado(grafo.get(N2).getGrado() + 1);
+        Pintar.pintarLinea(PanelMapa.getGraphics(), x1, y1, x2, y2);
+        String mensaje = "El vertice de menor grado es: ";
+        mensaje += gradomenor();
+        mensaje+=" la suma de los grados es: ";
+        mensaje+=sumagrador();
+                
+
+        LabelGrado.setText(mensaje);
     }//GEN-LAST:event_Agregar_AristaMouseClicked
 
     private void PruebaRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PruebaRutaMouseClicked
@@ -264,7 +278,7 @@ public class Principal extends javax.swing.JFrame {
         imprimeMatriz(Madyacencia);
         System.out.println("\n\n");
         for (int i = 0; i < grafo.size(); i++) {
-            System.out.println("grado: "+grafo.get(i).getGrado());
+            System.out.println("grado: " + grafo.get(i).getGrado());
         }
         if (Cnodos >= 2) {
             System.out.println(grafo.toString());
@@ -314,6 +328,31 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
+    public static String gradomenor() {
+        String tostring = "";
+        int menor = 20;
+        int nombre = 0;
+        for (int i = 0; i < grafo.size(); i++) {
+            if (grafo.get(i).getGrado() < menor) {
+                menor = grafo.get(i).getGrado();
+                nombre = grafo.get(i).getNombre();
+
+            }
+        }
+        tostring = String.valueOf(nombre);
+        tostring += " : ";
+        tostring += String.valueOf(menor);
+        return tostring;
+    }
+
+    public static int sumagrador() {
+        int suma = 0;
+        for (int i = 0; i < grafo.size(); i++) {
+            suma+=grafo.get(i).getGrado();
+        }
+        return suma;
+    }
+
     private void imprimeMatriz(int m[][]) {
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[i].length; j++) {
@@ -326,8 +365,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton AgArista;
     private javax.swing.JDialog Agg_Arista;
     private javax.swing.JButton Agregar_Arista;
-    private javax.swing.JTextField Apeso;
     private javax.swing.JTextArea Instrucciones;
+    private javax.swing.JLabel LabelGrado;
     private javax.swing.JTextField Ndestino;
     private javax.swing.JTextField Norigen;
     private javax.swing.JPanel PanelMapa;
@@ -338,30 +377,26 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-/*
-    SOLICITAR INTERFAZ GRAFICA PARA V TRUE
+/*    SOLICITAR INTERFAZ GRAFICA PARA V TRUE
     SOLICITAR INTERFAZ GRAFICA PARA E TRUE
-    REPRESENTAR EN UNA ESTRUCTURA DE DATO TRUE(ARRAYLIST)
+    REPRESENTAR EN UNA ESTRUCTURA DE DATO TRUE(ARRAYLIST) 
     DIBUJAR EL GRAFO G TRUE
     CALCULAR EL GRADO DEL GRAFO FALSE
-    CALCULAR LA SUMA DED LOS GRADOS DE LOS VERTICES V FALSE teniendo el grado de cada nodo, 
-                                                            un for con acumulador y se hace
-    CALCULAR EL GRADO MENOR ENTRE LOS VERTICES FALSE ya se puso grado en el nodo, despues va 
-                                                            a ser buscar el menor
-    SOLICITAR RUTA Y VALIDARLA
-    CAMBIARLE COLOR A LA RUTA
-    DETECTAR CICLOS EN G
+    CALCULAR LA SUMA DED LOS GRADOS DE LOS VERTICES V TRUE 
+    CALCULAR EL GRADO MENOR ENTRE LOS VERTICES TRUE 
     
-    */
-    ArrayList<Nodo> grafo = new ArrayList();
+    SOLICITAR RUTA Y VALIDARLA FALSE
+    CAMBIARLE COLOR A LA RUTA FALSE
+    DETECTAR CICLOS EN G FALSE
+     */
+    static ArrayList<Nodo> grafo = new ArrayList();
     int[][] Madyacencia = new int[15][15];// se pone un maximo de 15 por pura conveniencia
-    
     int Cnodos = 0; //cantidad de nodos
 }
