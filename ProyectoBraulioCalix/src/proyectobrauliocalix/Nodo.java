@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Nodo {
     int nombre=0, Vx=0,Vy=0;
-    ArrayList <Nodo> conexiones= new ArrayList<Nodo>();
+    ArrayList conexiones= new ArrayList();
     boolean visitado=false;
     int grado;
     public Nodo(int Nombre,int valorx,int valory) {
@@ -58,15 +58,15 @@ public class Nodo {
         this.Vy = Vy;
     }
 
-    public ArrayList<Nodo> getConexiones() {
+    public ArrayList getConexiones() {
         return conexiones;
     }
 
-    public void setConexiones(ArrayList<Nodo> conexiones) {
+    public void setConexiones(ArrayList conexiones) {
         this.conexiones = conexiones;
     }
 
-    public boolean isVisitado() {
+    public boolean GetVisitado() {
         return visitado;
     }
 
