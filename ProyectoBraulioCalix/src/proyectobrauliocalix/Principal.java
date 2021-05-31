@@ -47,6 +47,12 @@ public class Principal extends javax.swing.JFrame {
         NorigenRuta = new javax.swing.JTextField();
         NodoDestruta = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        ingresaciclo = new javax.swing.JDialog();
+        Nodociclo1 = new javax.swing.JTextField();
+        btnciclo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        Nodociclo3 = new javax.swing.JTextField();
+        Nodociclo2 = new javax.swing.JTextField();
         LabelGrado = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         PanelMapa = new javax.swing.JPanel();
@@ -154,6 +160,22 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
+        ingresaciclo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ingresaciclo.getContentPane().add(Nodociclo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 75, 100, -1));
+
+        btnciclo.setText("ciclos");
+        btnciclo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncicloMouseClicked(evt);
+            }
+        });
+        ingresaciclo.getContentPane().add(btnciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 75, -1, -1));
+
+        jLabel5.setText("En que vertice quiere probar ciclos ingrese 3 nodos");
+        ingresaciclo.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 46, -1, -1));
+        ingresaciclo.getContentPane().add(Nodociclo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 100, -1));
+        ingresaciclo.getContentPane().add(Nodociclo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 100, -1));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(LabelGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, 670, 40));
@@ -226,6 +248,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(repintar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         Btn_ciclos.setText("ciclos");
+        Btn_ciclos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_ciclosMouseClicked(evt);
+            }
+        });
         getContentPane().add(Btn_ciclos, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 520, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Webp.net-resizeimage.jpg"))); // NOI18N
@@ -293,7 +320,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_Agregar_AristaMouseClicked
 
     private void PruebaRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PruebaRutaMouseClicked
-
         for (int i = 0; i < grafo.size(); i++) {
             grafo.get(i).setVisitado(false);
         }
@@ -342,9 +368,42 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_repintarMouseClicked
 
+    private void Btn_ciclosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ciclosMouseClicked
+        //que hueva hacer esto dog, al barro
+        if (Cnodos > 2) {
+            ingresaciclo.pack();
+            ingresaciclo.setModal(true);
+            ingresaciclo.setLocationRelativeTo(this);
+            ingresaciclo.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "se necesitan al menos dos nodos creados para probar un ciclo \ngracias");
+        }
+    }//GEN-LAST:event_Btn_ciclosMouseClicked
+
+    private void btncicloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncicloMouseClicked
+        int C1 = Integer.parseInt(Nodociclo1.getText());
+        int C2 = Integer.parseInt(Nodociclo2.getText());
+        int C3 = Integer.parseInt(Nodociclo3.getText());
+        for (int i = 0; i < Madyacencia.length; i++) {
+            for (int j = 0; j < Madyacencia[i].length; j++) {
+
+                if (Madyacencia[C1][C2] == 1 && Madyacencia[C3][C2] == 1 &&Madyacencia[C3][C1]==1) {
+                    JOptionPane.showMessageDialog(this, "Si se forma un ciclo ");
+                }
+
+            }
+        }
+
+    }//GEN-LAST:event_btncicloMouseClicked
+
     /**
      * @param args the command line arguments
      */
+    public static int[] ciclo(int ruta[], int inicio, int aux) {
+
+        return ruta;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -466,16 +525,22 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel LabelGrado;
     private javax.swing.JTextField Ndestino;
     private javax.swing.JTextField NodoDestruta;
+    private javax.swing.JTextField Nodociclo1;
+    private javax.swing.JTextField Nodociclo2;
+    private javax.swing.JTextField Nodociclo3;
     private javax.swing.JTextField Norigen;
     private javax.swing.JTextField NorigenRuta;
     private javax.swing.JPanel PanelMapa;
     private javax.swing.JButton PruebaRuta;
     private javax.swing.JDialog Prueba_ruta;
+    private javax.swing.JButton btnciclo;
+    private javax.swing.JDialog ingresaciclo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;

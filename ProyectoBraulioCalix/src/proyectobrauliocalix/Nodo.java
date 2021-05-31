@@ -78,7 +78,12 @@ public class Nodo {
 
     @Override
     public String toString() {
-        return "Nodo{" + "nombre=" + nombre + ", Vx=" + Vx + ", Vy=" + Vy + ", conexiones=" + conexiones + ", visitado=" + visitado + ", grado=" + grado + '}';
+        String retorno="";
+        for (int i = 0; i < conexiones.size(); i++) {
+            retorno+="/"+this.getNombre()+","+this.conexiones.get(i).getNombre();
+            
+        }
+        return retorno;
     }
 
     
