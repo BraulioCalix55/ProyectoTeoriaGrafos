@@ -51,8 +51,6 @@ public class Principal extends javax.swing.JFrame {
         Nodociclo1 = new javax.swing.JTextField();
         btnciclo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        Nodociclo3 = new javax.swing.JTextField();
-        Nodociclo2 = new javax.swing.JTextField();
         LabelGrado = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         PanelMapa = new javax.swing.JPanel();
@@ -171,10 +169,8 @@ public class Principal extends javax.swing.JFrame {
         });
         ingresaciclo.getContentPane().add(btnciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 75, -1, -1));
 
-        jLabel5.setText("En que vertice quiere probar ciclos ingrese 3 nodos");
+        jLabel5.setText("En que vertice quiere probar ciclos ");
         ingresaciclo.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 46, -1, -1));
-        ingresaciclo.getContentPane().add(Nodociclo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 100, -1));
-        ingresaciclo.getContentPane().add(Nodociclo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 100, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -382,23 +378,61 @@ public class Principal extends javax.swing.JFrame {
 
     private void btncicloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncicloMouseClicked
         int C1 = Integer.parseInt(Nodociclo1.getText());
-        int C2 = Integer.parseInt(Nodociclo2.getText());
-        int C3 = Integer.parseInt(Nodociclo3.getText());
-        for (int i = 0; i < Madyacencia.length; i++) {
-            for (int j = 0; j < Madyacencia[i].length; j++) {
-
-                if (Madyacencia[C1][C2] == 1 && Madyacencia[C3][C2] == 1 &&Madyacencia[C3][C1]==1) {
-                    JOptionPane.showMessageDialog(this, "Si se forma un ciclo ");
-                }
-
+        boolean regreso = false;
+        ArrayList cicl = ciclo(regreso, C1, 0);
+        String Salida="";
+        if (cicl.get(cicl.size()-1).equals(true)) {
+            for (int i = 0; i < cicl.size()-1; i++) {
+                Salida+=" "+cicl.get(i);
             }
+            JOptionPane.showMessageDialog(this,"si hace ciclo con los nodos ");
+        }else {
+            JOptionPane.showMessageDialog(this, "no se pueden formar ciclos");
         }
 
     }//GEN-LAST:event_btncicloMouseClicked
+    public ArrayList ciclo(boolean regreso, int nodoinicio, int aux) {
+        ArrayList conexionesEfectivas= new ArrayList();
+        ArrayList conexiones1 = new ArrayList();
+        for (int i = 0; i < Madyacencia.length; i++) {
+            for (int j = 0; j < Madyacencia[i].length; j++) {
+                if (Madyacencia[i][j]==1) {
+                    conexiones1.add(j);
+                    conexionesEfectivas.add(i);
+                    aux = j;
+                    
+                }
+            }
+        }
+        ArrayList conexiones2 = new ArrayList();
+        for (int i = 0; i < Madyacencia.length; i++) {
+            for (int j = 0; j < Madyacencia[i].length; j++) {
+                if (i == aux) {
+                    conexiones2.add(j);
+                    conexionesEfectivas.add(i);
+                    aux = j;
+                }
+            }
+        }
+        ArrayList conexiones3 = new ArrayList();
+        for (int i = 0; i < Madyacencia.length; i++) {
+            for (int j = 0; j < Madyacencia[i].length; j++) {
+                if (i == aux) {
+                    conexiones3.add(j);
+                    conexionesEfectivas.add(i);
+                    aux = j;
+                }
+            }
+        }
+        for (int i = 0; i < conexiones3.size(); i++) {
+            if (conexiones3.get(i).equals(nodoinicio)) {
+                regreso=true;
+                conexionesEfectivas.add(true);
+            }
+        }
+        return conexionesEfectivas;
+    }
 
-    /**
-     * @param args the command line arguments
-     */
     public static int[] ciclo(int ruta[], int inicio, int aux) {
 
         return ruta;
@@ -526,8 +560,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField Ndestino;
     private javax.swing.JTextField NodoDestruta;
     private javax.swing.JTextField Nodociclo1;
-    private javax.swing.JTextField Nodociclo2;
-    private javax.swing.JTextField Nodociclo3;
     private javax.swing.JTextField Norigen;
     private javax.swing.JTextField NorigenRuta;
     private javax.swing.JPanel PanelMapa;
